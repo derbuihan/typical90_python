@@ -14,24 +14,24 @@ def main():
         G[a].append(b)
         G[b].append(a)
 
-    def dfs(start):
+    def dfs(G, start, dist, visit):
         visit[start] = True
         for n in G[start]:
             if visit[n]:
                 continue
-            DP[n] = DP[start] + 1
-            dfs(n)
+            dist[n] = dist[start] + 1
+            dfs(G, n, dist, visit)
 
-    visit = [False] * N
-    DP = [0] * N
-    dfs(0)
-    edge1 = max(range(N), key=lambda i: DP[i])
+    dist1 = [0] * N
+    visit1 = [False] * N
+    dfs(G, 0, dist1, visit1)
+    edge1 = max(range(N), key=lambda i: dist1[i])
 
-    visit = [False] * N
-    DP = [0] * N
-    dfs(edge1)
+    dist2 = [0] * N
+    visit2 = [False] * N
+    dfs(G, edge1, dist2, visit2)
 
-    ans = max(DP) + 1
+    ans = max(dist2) + 1
     print(ans)
 
 
