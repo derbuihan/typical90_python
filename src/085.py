@@ -1,6 +1,3 @@
-from itertools import product
-
-
 def main():
     K = int(input())
 
